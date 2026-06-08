@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Althea Residences — Heraklion, Crete</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --sand: #C8B89A;
+    --sand-light: #E8DDD0;
+    --sand-dark: #8C7A62;
+    --stone: #2A2520;
+    --stone-mid: #3D3530;
+    --cream: #F5F0E8;
+    --gold: #B8965A;
+    --gold-light: #D4AF7A;
+    --white: #FAFAF8;
+    --text-muted: rgba(250,250,248,0.55);
+    --text-soft: rgba(250,250,248,0.80);
+    --ff-serif: 'Cormorant Garamond', Georgia, serif;
+    --ff-sans: 'Raleway', sans-serif;
+    --ease-silk: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--stone);
+    color: var(--white);
+    font-family: var(--ff-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  #cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s, width 0.3s var(--ease-silk), height 0.3s var(--ease-silk), background 0.3s;
+  }
+  #cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,150,90,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s var(--ease-silk), width 0.4s var(--ease-silk), height 0.4s var(--ease-silk), border-color 0.3s, opacity 0.3s;
+  }
+  body:hover #cursor-ring { opacity: 1; }
+  a:hover ~ #cursor, button:hover ~ #cursor { width: 14px; height: 14px; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    mix-blend-mode: normal;
+    transition: background 0.5s, padding 0.5s;
+  }
+  nav.scrolled {
+    background: rgba(26,21,16,0.92);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid rgba(184,150,90,0.15);
+  }
+  .nav-logo {
+    font-family: var(--ff-serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-coords {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* PROGRESS BAR */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 1px;
+    background: var(--gold);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* SECTIONS BASE */
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* ========================
+     SECTION 01 — HERO
+     ======================== */
+  #hero {
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0D0B09;
+  }
+  #hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      170deg,
+      #0D0B09 0%,
+      #1A1510 20%,
+      #2A2218 55%,
+      #1A1510 80%,
+      #0D0B09 100%
+    );
+  }
+  .hero-arch {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-arch svg {
+    width: 100%; height: auto;
+    opacity: 0.07;
+    transform: translateY(20%);
+    transition: transform 1.8s var(--ease-silk);
+  }
+  .hero-arch svg.loaded { transform: translateY(0); }
+  #hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 2rem;
+  }
+  .hero-pretitle {
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s var(--ease-silk) 0.3s forwards;
+  }
+  .hero-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(5.5rem, 13vw, 12rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    line-height: 0.88;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1.4s var(--ease-silk) 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--sand-light);
+  }
+  .hero-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s var(--ease-silk) 0.9s forwards;
+  }
+  .hero-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+  .hero-tagline {
+    font-family: var(--ff-serif);
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    font-style: italic;
+    color: var(--text-soft);
+    max-width: 500px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeIn 1s 1.8s forwards;
+  }
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeIn 1s 2.2s forwards;
+  }
+  .btn-primary {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--stone);
+    background: var(--gold-light);
+    padding: 1rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, letter-spacing 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--sand);
+    letter-spacing: 0.38em;
+  }
+  .btn-ghost {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--text-soft);
+    background: transparent;
+    border: 1px solid rgba(184,150,90,0.35);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+  }
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0;
+    animation: fadeIn 1s 2.8s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold-light), transparent);
+    animation: scrollPulse 2.5s ease-in-out infinite;
+  }
+  .scroll-text {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 400;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+  .hero-bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .hero-bottom-item {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .hero-bottom-item span {
+    color: var(--gold);
+    font-family: var(--ff-serif);
+    font-size: 0.8rem;
+  }
+
+  /* ========================
+     SECTION 02 — MANIFESTO
+     ======================== */
+  #manifesto {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12rem 8rem;
+    background: var(--stone);
+  }
+  .manifesto-inner {
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .manifesto-left {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .manifesto-index {
+    font-family: var(--ff-serif);
+    font-size: 7rem;
+    font-weight: 300;
+    color: rgba(184,150,90,0.12);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .manifesto-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .manifesto-headline {
+    font-family: var(--ff-serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.18;
+    color: var(--white);
+  }
+  .manifesto-headline em {
+    font-style: italic;
+    color: var(--sand-light);
+  }
+  .manifesto-para {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 520px;
+  }
+  .manifesto-para strong {
+    color: var(--sand-light);
+    font-weight: 400;
+  }
+  .manifesto-greek {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    border-left: 1px solid var(--gold);
+    padding-left: 1.5rem;
+    line-height: 1.7;
+  }
+  .manifesto-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 2.5rem 0;
+  }
+  .manifesto-stat {
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding: 0 1.5rem;
+  }
+  .manifesto-stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--ff-serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* ========================
+     SECTION 03 — LOCATION
+     ======================== */
+  #location {
+    min-height: 100vh;
+    background: var(--stone-mid);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .location-visual {
+    position: relative;
+    min-height: 70vh;
+    background: #1A1510;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .location-map-art {
+    width: 80%;
+    opacity: 0.6;
+  }
+  .location-content {
+    padding: 8rem 5rem 8rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+  }
+  .location-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white);
+  }
+  .location-title em { font-style: italic; color: var(--sand-light); }
+  .location-desc {
+    font-size: 0.92rem;
+    line-height: 2;
+    color: var(--text-soft);
+    max-width: 440px;
+  }
+  .distance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .distance-item {
+    background: var(--stone-mid);
+    padding: 1.4rem 1.6rem;
+    transition: background 0.3s;
+  }
+  .distance-item:hover { background: rgba(184,150,90,0.07); }
+  .distance-num {
+    font-family: var(--ff-serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+  }
+  .distance-dest {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+    display: block;
+  }
+  .location-coords {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    font-family: monospace;
+  }
+
+  /* ========================
+     SECTION 04 — THE BUILDING
+     ======================== */
+  #building {
+    min-height: 100vh;
+    background: #0F0D0A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 4rem;
+    gap: 6rem;
+  }
+  .building-top {
+    text-align: center;
+    max-width: 700px;
+  }
+  .building-headline {
+    font-family: var(--ff-serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--white);
+    margin-top: 1.5rem;
+  }
+  .building-headline em { font-style: italic; color: var(--sand-light); }
+  .building-desc {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-soft);
+    margin-top: 2rem;
+  }
+  .building-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    width: 100%;
+    max-width: 1100px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .building-card {
+    background: #0F0D0A;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transition: background 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .building-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .building-card:hover { background: rgba(184,150,90,0.05); }
+  .building-card:hover::after { opacity: 1; }
+  .card-number {
+    font-family: var(--ff-serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(184,150,90,0.2);
+    line-height: 1;
+  }
+  .card-title {
+    font-family: var(--ff-serif);
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--sand-light);
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  /* ========================
+     SECTION 05 — RESIDENCES
+     ======================== */
+  #residences {
+    background: var(--stone);
+    padding: 10rem 6rem;
+  }
+  .residences-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+  .residences-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+  }
+  .residences-title em { font-style: italic; color: var(--sand-light); }
+  .residences-intro {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--text-soft);
+    padding-bottom: 0.5rem;
+  }
+  .floor-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .floor-tab {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--text-muted);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.3s, border-color 0.3s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .floor-tab.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold-light);
+  }
+  .floor-tab:hover:not(.active) { color: var(--text-soft); }
+  .floor-panel { display: none; }
+  .floor-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: rgba(255,255,255,0.05); }
+  .unit-card {
+    background: var(--stone);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    cursor: pointer;
+    transition: background 0.35s;
+    position: relative;
+  }
+  .unit-card:hover { background: rgba(184,150,90,0.06); }
+  .unit-id {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .unit-size {
+    font-family: var(--ff-serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+  }
+  .unit-size span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-family: var(--ff-sans);
+    font-weight: 300;
+  }
+  .unit-type {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--sand-light);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .unit-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .unit-features li {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .unit-features li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.6rem;
+  }
+
+  /* ========================
+     SECTION 06 — SUNLIGHT EXPERIENCE
+     ======================== */
+  #sunlight {
+    min-height: 100vh;
+    background: #0A0907;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .sunlight-content {
+    padding: 10rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: center;
+  }
+  .sunlight-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white);
+  }
+  .sunlight-title em { font-style: italic; color: var(--gold-light); }
+  .sunlight-desc {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--text-soft);
+    max-width: 400px;
+  }
+  .sun-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    padding-left: 2rem;
+    margin-top: 1rem;
+  }
+  .sun-event {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .sun-event::before {
+    content: '';
+    position: absolute;
+    left: -2.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--stone);
+  }
+  .sun-time {
+    font-family: var(--ff-serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    min-width: 5rem;
+  }
+  .sun-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .sunlight-visual {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1A0E00 0%, #3A2A00 40%, #6B4B00 70%, #8B6500 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sun-art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ========================
+     SECTION 07 — MATERIALS
+     ======================== */
+  #materials {
+    min-height: 80vh;
+    background: var(--cream);
+    color: var(--stone);
+    padding: 10rem 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+  .materials-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .materials-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--stone);
+  }
+  .materials-title em { font-style: italic; color: var(--sand-dark); }
+  .materials-sub {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #8C7A62;
+    max-width: 360px;
+    text-align: right;
+  }
+  .palette-swatches {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    height: 300px;
+    overflow: hidden;
+  }
+  .swatch {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex-grow 0.5s var(--ease-silk);
+  }
+  .swatch-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    transform: translateY(100%);
+    transition: transform 0.35s var(--ease-silk);
+  }
+  .swatch:hover .swatch-label { transform: translateY(0); }
+  .s1 { background: #C8B89A; }
+  .s2 { background: #8C7A62; }
+  .s3 { background: linear-gradient(135deg, #A09080 25%, #B8A898 25%, #B8A898 50%, #A09080 50%, #A09080 75%, #B8A898 75%); }
+  .s4 { background: #5A4A3A; }
+  .s5 { background: #2A2520; }
+  .material-qualities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  .quality-item { display: flex; flex-direction: column; gap: 0.6rem; }
+  .quality-num {
+    font-family: var(--ff-serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--sand-dark);
+  }
+  .quality-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-mid);
+    font-weight: 400;
+  }
+  .quality-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: #6A5A48;
+  }
+
+  /* ========================
+     SECTION 08 — VISUALS GALLERY
+     ======================== */
+  #gallery {
+    background: var(--stone);
+    padding: 8rem 0;
+  }
+  .gallery-header {
+    padding: 0 6rem;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .gallery-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .gallery-title em { font-style: italic; color: var(--sand-light); }
+  .gallery-nav-btns {
+    display: flex;
+    gap: 1rem;
+  }
+  .gnav-btn {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(184,150,90,0.3);
+    background: transparent;
+    color: var(--gold-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .gnav-btn:hover {
+    background: rgba(184,150,90,0.1);
+    border-color: var(--gold-light);
+  }
+  .gallery-strip {
+    display: flex;
+    gap: 2px;
+    overflow: hidden;
+    padding: 0 6rem;
+  }
+  .gallery-item {
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    transition: flex-basis 0.7s var(--ease-silk);
+  }
+  .gallery-item-inner {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s var(--ease-silk), filter 0.5s;
+    filter: brightness(0.7) saturate(0.85);
+  }
+  .gallery-item:hover .gallery-item-inner {
+    transform: scale(1.05);
+    filter: brightness(0.9) saturate(1);
+  }
+  .gallery-item-label {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.4);
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(4px);
+  }
+  .gallery-room-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+    padding: 0 6rem;
+  }
+  .room-card {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .room-card-bg {
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s var(--ease-silk), filter 0.5s;
+    filter: brightness(0.5) saturate(0.7);
+  }
+  .room-card:hover .room-card-bg {
+    transform: scale(1.08);
+    filter: brightness(0.75) saturate(0.9);
+  }
+  .room-card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(10,8,6,0.7) 0%, transparent 60%);
+  }
+  .room-name {
+    font-family: var(--ff-serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--white);
+  }
+  .room-tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.3rem;
+  }
+
+  /* ========================
+     SECTION 09 — INVEST
+     ======================== */
+  #invest {
+    min-height: 100vh;
+    background: #0D0B09;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 4rem;
+  }
+  .invest-inner {
+    max-width: 1000px;
+    width: 100%;
+  }
+  .invest-header {
+    text-align: center;
+    margin-bottom: 6rem;
+  }
+  .invest-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .invest-title em { font-style: italic; color: var(--gold-light); }
+  .invest-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(184,150,90,0.15);
+    border: 1px solid rgba(184,150,90,0.15);
+    margin-bottom: 4rem;
+  }
+  .invest-cell {
+    background: #0D0B09;
+    padding: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transition: background 0.4s;
+  }
+  .invest-cell:hover { background: rgba(184,150,90,0.04); }
+  .invest-icon {
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0;
+  }
+  .invest-cell-title {
+    font-family: var(--ff-serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--sand-light);
+    line-height: 1.3;
+  }
+  .invest-cell-text {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+  }
+  .invest-bottom {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .invest-tagline {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--text-soft);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* ========================
+     SECTION 10 — CLOSING
+     ======================== */
+  #closing {
+    min-height: 100vh;
+    background: var(--stone);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 0;
+  }
+  .closing-bg-art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .closing-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem;
+  }
+  .closing-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .closing-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--white);
+  }
+  .closing-title em { font-style: italic; color: var(--sand-light); }
+  .closing-sub {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    max-width: 500px;
+    line-height: 1.7;
+  }
+  .closing-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .closing-cta-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .closing-architects {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 4rem;
+    padding: 3rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    width: 100%;
+    justify-content: center;
+  }
+  .arch-item {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .arch-item strong {
+    display: block;
+    color: var(--sand-light);
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    font-family: var(--ff-serif);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080705;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-logo {
+    font-family: var(--ff-serif);
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-copy {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.6); opacity: 0.4; }
+  }
+  @keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes sunRise {
+    0% { transform: translateY(100px) scale(0.5); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s var(--ease-silk), transform 0.9s var(--ease-silk);
+  }
+  .reveal.left {
+    transform: translateX(-40px);
+  }
+  .reveal.right {
+    transform: translateX(40px);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.45s; }
+  .reveal-delay-5 { transition-delay: 0.6s; }
+
+  /* PARALLAX LAYERS */
+  [data-parallax] {
+    will-change: transform;
+  }
+
+  /* FRAMER EXPORT NOTES PANEL */
+  #framer-notes {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- PROGRESS -->
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Althea</a>
+  <ul class="nav-links">
+    <li><a href="#location">Location</a></li>
+    <li><a href="#residences">Residences</a></li>
+    <li><a href="#gallery">Visuals</a></li>
+    <li><a href="#closing">Enquire</a></li>
+  </ul>
+  <span class="nav-coords">35°19'23.98"N · 25°07'05.44"E</span>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<section id="hero">
+  <div id="hero-bg"></div>
+  <div class="hero-arch">
+    <svg id="hero-arch-svg" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200 700 L200 320 Q200 80 700 80 Q1200 80 1200 320 L1200 700" fill="none" stroke="#C8B89A" stroke-width="1.5"/>
+      <path d="M350 700 L350 360 Q350 180 700 180 Q1050 180 1050 360 L1050 700" fill="none" stroke="#C8B89A" stroke-width="0.8"/>
+      <path d="M500 700 L500 420 Q500 300 700 300 Q900 300 900 420 L900 700" fill="none" stroke="#C8B89A" stroke-width="0.5"/>
+      <line x1="0" y1="695" x2="1400" y2="695" stroke="#C8B89A" stroke-width="0.5"/>
+      <line x1="0" y1="680" x2="1400" y2="680" stroke="#C8B89A" stroke-width="0.3"/>
+    </svg>
+  </div>
+  <div id="hero-content" data-parallax="0.15">
+    <span class="hero-pretitle">D. Makri &amp; G. Orfanou · Heraklion, Crete</span>
+    <h1 class="hero-title"><em>Althea</em></h1>
+    <p class="hero-subtitle">Residences &nbsp;·&nbsp; Mediterranean Contemporary</p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Inspired by the Greek word <em>althaino</em> — to heal, to restore. Eleven residences where architecture becomes renewal.</p>
+    <div class="hero-cta-row">
+      <a href="#residences" class="btn-primary">Explore Residences</a>
+      <a href="#gallery" class="btn-ghost">View Visuals</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+  <div class="hero-bottom-bar">
+    <span class="hero-bottom-item"><span>11</span> Residences</span>
+    <span class="hero-bottom-item"><span>2</span> Floor Typologies</span>
+    <span class="hero-bottom-item">35–115 <span>m²</span></span>
+    <span class="hero-bottom-item">Heraklion <span>Crete</span></span>
+  </div>
+</section>
+
+<!-- ======================== MANIFESTO ======================== -->
+<section id="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-left reveal left">
+      <div class="manifesto-index">01</div>
+      <div class="section-label">The Name</div>
+    </div>
+    <div class="manifesto-body">
+      <h2 class="manifesto-headline reveal">
+        Where <em>healing</em><br>becomes a way of living.
+      </h2>
+      <blockquote class="manifesto-greek reveal reveal-delay-1">
+        Ἀλθαίνω — to heal, to restore,<br>to make whole again.
+      </blockquote>
+      <p class="manifesto-para reveal reveal-delay-2">
+        <strong>Althea</strong> takes its name from an ancient Greek verb — one that speaks of mending, renewal, of coming home to something more than walls and ceilings. In this spirit, every detail of the complex was composed to serve not just function, but the deeper quality of daily life.
+      </p>
+      <p class="manifesto-para reveal reveal-delay-3">
+        Architecture, aesthetics, and lived experience coexist in precise harmony — a collection of residences designed to express <strong>exclusivity, refined aesthetic vision</strong>, and an authentic encounter with Mediterranean contemporary luxury.
+      </p>
+      <div class="manifesto-stat-row reveal reveal-delay-4">
+        <div class="manifesto-stat">
+          <span class="stat-num">11</span>
+          <span class="stat-label">Private Residences</span>
+        </div>
+        <div class="manifesto-stat">
+          <span class="stat-num">35–115</span>
+          <span class="stat-label">m² per Residence</span>
+        </div>
+        <div class="manifesto-stat">
+          <span class="stat-num">2026</span>
+          <span class="stat-label">Year of Completion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== LOCATION ======================== -->
+<section id="location">
+  <div class="location-visual" data-parallax="0.1">
+    <svg class="location-map-art" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- Abstract city grid art -->
+      <g stroke="#C8B89A" stroke-width="0.5" fill="none" opacity="0.6">
+        <!-- grid -->
+        <line x1="50" y1="0" x2="50" y2="400"/><line x1="100" y1="0" x2="100" y2="400"/>
+        <line x1="150" y1="0" x2="150" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/>
+        <line x1="250" y1="0" x2="250" y2="400"/><line x1="300" y1="0" x2="300" y2="400"/>
+        <line x1="350" y1="0" x2="350" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/>
+        <line x1="450" y1="0" x2="450" y2="400"/>
+        <line x1="0" y1="50" x2="500" y2="50"/><line x1="0" y1="100" x2="500" y2="100"/>
+        <line x1="0" y1="150" x2="500" y2="150"/><line x1="0" y1="200" x2="500" y2="200"/>
+        <line x1="0" y1="250" x2="500" y2="250"/><line x1="0" y1="300" x2="500" y2="300"/>
+        <line x1="0" y1="350" x2="500" y2="350"/>
+      </g>
+      <!-- Blocks -->
+      <g fill="#C8B89A" opacity="0.15">
+        <rect x="55" y="55" width="40" height="40" rx="2"/>
+        <rect x="105" y="55" width="80" height="40" rx="2"/>
+        <rect x="55" y="105" width="40" height="80" rx="2"/>
+        <rect x="205" y="55" width="40" height="40" rx="2"/>
+        <rect x="255" y="55" width="80" height="80" rx="2"/>
+        <rect x="355" y="105" width="40" height="40" rx="2"/>
+        <rect x="405" y="55" width="80" height="80" rx="2"/>
+        <rect x="105" y="205" width="40" height="80" rx="2"/>
+        <rect x="155" y="255" width="80" height="40" rx="2"/>
+        <rect x="305" y="205" width="40" height="80" rx="2"/>
+        <rect x="355" y="255" width="80" height="40" rx="2"/>
+      </g>
+      <!-- Pin marker -->
+      <circle cx="250" cy="200" r="18" fill="none" stroke="#D4AF7A" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="250" cy="200" r="5" fill="#D4AF7A" opacity="0.9"/>
+      <line x1="250" y1="160" x2="250" y2="182" stroke="#D4AF7A" stroke-width="1" opacity="0.6"/>
+      <line x1="250" y1="218" x2="250" y2="240" stroke="#D4AF7A" stroke-width="1" opacity="0.6"/>
+      <line x1="210" y1="200" x2="232" y2="200" stroke="#D4AF7A" stroke-width="1" opacity="0.6"/>
+      <line x1="268" y1="200" x2="290" y2="200" stroke="#D4AF7A" stroke-width="1" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="location-content">
+    <div class="section-label reveal">Location</div>
+    <h2 class="location-title reveal reveal-delay-1">
+      Heraklion's<br><em>ascendant quarter</em>
+    </h2>
+    <p class="location-desc reveal reveal-delay-2">
+      A neighbourhood defined by quiet residential character and contemporary aspiration — connected to the city's essential rhythms while preserving the calm necessary for refined daily life.
+    </p>
+    <div class="distance-grid reveal reveal-delay-3">
+      <div class="distance-item">
+        <span class="distance-num">6 km</span>
+        <span class="distance-dest">International Airport</span>
+      </div>
+      <div class="distance-item">
+        <span class="distance-num">4 km</span>
+        <span class="distance-dest">Coastal Zone</span>
+      </div>
+      <div class="distance-item">
+        <span class="distance-num">2.5 km</span>
+        <span class="distance-dest">City Centre</span>
+      </div>
+      <div class="distance-item">
+        <span class="distance-num">1 km</span>
+        <span class="distance-dest">Education &amp; Sport</span>
+      </div>
+    </div>
+    <span class="location-coords reveal reveal-delay-4">35°19'23.98"N &nbsp; 25°07'05.44"E · Heraklion, Crete, GR</span>
+  </div>
+</section>
+
+<!-- ======================== BUILDING ======================== -->
+<section id="building">
+  <div class="building-top">
+    <div class="section-label reveal" style="justify-content:center;">The Architecture</div>
+    <h2 class="building-headline reveal reveal-delay-1">
+      A new order of<br><em>Mediterranean living</em>
+    </h2>
+    <p class="building-desc reveal reveal-delay-2">
+      An entirely new residential complex with basement, pilotis, and two floors of curated typologies — designed with an uncompromising emphasis on natural light, spatial functionality, and the contemporary Mediterranean aesthetic.
+    </p>
+  </div>
+  <div class="building-cards">
+    <div class="building-card reveal reveal-delay-1">
+      <span class="card-number">A</span>
+      <p class="card-title">Floor A — Single-Level Residences</p>
+      <p class="card-desc">Five refined single-level apartments ranging from intimate 35 m² studios to expansive 106 m² three-bedroom suites with Master Suite and walk-in wardrobe.</p>
+    </div>
+    <div class="building-card reveal reveal-delay-2">
+      <span class="card-number">B</span>
+      <p class="card-title">Floor B — Loft &amp; Split-Level</p>
+      <p class="card-desc">Six split-level residences with loft mezzanines and private rooftop pools — an elevated loft living experience unique in the Heraklion market.</p>
+    </div>
+    <div class="building-card reveal reveal-delay-3">
+      <span class="card-number">◎</span>
+      <p class="card-title">Human-Designed Plans</p>
+      <p class="card-desc">Every plan choreographed by architects who prioritise the inhabitant's experience — open volumes, threshold sequences, light as material.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== RESIDENCES ======================== -->
+<section id="residences">
+  <div class="residences-header">
+    <div>
+      <div class="section-label reveal">Residences</div>
+      <h2 class="residences-title reveal reveal-delay-1">
+        Eleven homes.<br><em>One vision.</em>
+      </h2>
+    </div>
+    <p class="residences-intro reveal right">
+      A complete collection spanning studio to three-bedroom, single-level to split-level loft. Each residence is a singular composition — never a repetition.
+    </p>
+  </div>
+  <div class="floor-tabs">
+    <button class="floor-tab active" onclick="switchFloor('a', this)">Floor A — Single Level</button>
+    <button class="floor-tab" onclick="switchFloor('b', this)">Floor B — Loft & Split-Level</button>
+  </div>
+  <!-- FLOOR A -->
+  <div id="panel-a" class="floor-panel active">
+    <div class="unit-card reveal">
+      <span class="unit-id">Residence A1</span>
+      <div class="unit-size">103 <span>m²</span></div>
+      <div class="unit-type">Three Bedrooms · Master Suite</div>
+      <ul class="unit-features">
+        <li>Master Suite with en-suite bath</li>
+        <li>Walk-in Closet · 5.0 m²</li>
+        <li>Laundry Room · 3.0 m²</li>
+        <li>Bedrooms 02 &amp; 03</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-1">
+      <span class="unit-id">Residence A2</span>
+      <div class="unit-size">50 <span>m²</span></div>
+      <div class="unit-type">One Bedroom · Compact Living</div>
+      <ul class="unit-features">
+        <li>Bedroom · 13.5 m²</li>
+        <li>Modern functional plan</li>
+        <li>Ideal investment asset</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-2">
+      <span class="unit-id">Residence A3</span>
+      <div class="unit-size">106 <span>m²</span></div>
+      <div class="unit-type">Three Bedrooms · Family Home</div>
+      <ul class="unit-features">
+        <li>Master Suite · 17.0 m²</li>
+        <li>Generous open-plan living</li>
+        <li>Large family salon-kitchen</li>
+        <li>Three full bedrooms</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-3">
+      <span class="unit-id">Residence A4</span>
+      <div class="unit-size">35 <span>m²</span></div>
+      <div class="unit-type">One Bedroom · Studio</div>
+      <ul class="unit-features">
+        <li>Bedroom · 11.0 m²</li>
+        <li>Precise minimal plan</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-4">
+      <span class="unit-id">Residence A5</span>
+      <div class="unit-size">81 <span>m²</span></div>
+      <div class="unit-type">Two Bedrooms · Semi-Outdoor</div>
+      <ul class="unit-features">
+        <li>Bedroom 01 · 14.5 m²</li>
+        <li>Bedroom 02 · 12.0 m²</li>
+        <li>Semi-outdoor space 18.0 m²</li>
+      </ul>
+    </div>
+  </div>
+  <!-- FLOOR B -->
+  <div id="panel-b" class="floor-panel">
+    <div class="unit-card reveal">
+      <span class="unit-id">Residence B6</span>
+      <div class="unit-size">68 <span>m²</span></div>
+      <div class="unit-type">Loft Duplex · Rooftop Pool</div>
+      <ul class="unit-features">
+        <li>Loft mezzanine · 29.0 m²</li>
+        <li>Private rooftop pool · 2.0 m²</li>
+        <li>Two levels of living</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-1">
+      <span class="unit-id">Residence B7</span>
+      <div class="unit-size">74 <span>m²</span></div>
+      <div class="unit-type">Loft · Rooftop Experience</div>
+      <ul class="unit-features">
+        <li>Loft bedroom · 12.0 m²</li>
+        <li>Private rooftop pool</li>
+        <li>Dual-level living</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-2">
+      <span class="unit-id">Residence B8</span>
+      <div class="unit-size">94 <span>m²</span></div>
+      <div class="unit-type">Loft Duplex · Generous</div>
+      <ul class="unit-features">
+        <li>Loft bedroom · 15.0 m²</li>
+        <li>Rooftop living experience</li>
+        <li>Dual bathrooms</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-3">
+      <span class="unit-id">Residence B9</span>
+      <div class="unit-size">102 <span>m²</span></div>
+      <div class="unit-type">Loft · Three Bedrooms</div>
+      <ul class="unit-features">
+        <li>Three bedrooms total</li>
+        <li>Loft suite · 15.0 m²</li>
+        <li>Private pool</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-4">
+      <span class="unit-id">Residence B10</span>
+      <div class="unit-size">82 <span>m²</span></div>
+      <div class="unit-type">Loft Duplex</div>
+      <ul class="unit-features">
+        <li>Loft bedroom · 14.0 m²</li>
+        <li>Rooftop living</li>
+      </ul>
+    </div>
+    <div class="unit-card reveal reveal-delay-5">
+      <span class="unit-id">Residence B11</span>
+      <div class="unit-size">115 <span>m²</span></div>
+      <div class="unit-type">Premier Loft · Three Bedrooms</div>
+      <ul class="unit-features">
+        <li>Three loft bedrooms</li>
+        <li>Laundry · 4.0 m²</li>
+        <li>Largest residence in collection</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== SUNLIGHT ======================== -->
+<section id="sunlight">
+  <div class="sunlight-content">
+    <div class="section-label reveal">Sun & Light</div>
+    <h2 class="sunlight-title reveal reveal-delay-1">
+      Light is the<br><em>first material</em>
+    </h2>
+    <p class="sunlight-desc reveal reveal-delay-2">
+      The orientation of every residence was calibrated to maximise natural light throughout the day — not as afterthought, but as primary architectural intention.
+    </p>
+    <div class="sun-timeline reveal reveal-delay-3">
+      <div class="sun-event">
+        <span class="sun-time">07:50</span>
+        <span class="sun-desc">Morning light enters the east-facing living volumes — cool, directional, clarifying.</span>
+      </div>
+      <div class="sun-event">
+        <span class="sun-time">12:50</span>
+        <span class="sun-desc">Midday light floods south-facing terraces; deep overhangs provide natural solar control.</span>
+      </div>
+      <div class="sun-event">
+        <span class="sun-time">17:50</span>
+        <span class="sun-desc">Late afternoon: warm amber diffusion through west openings, long interior shadows.</span>
+      </div>
+      <div class="sun-event">
+        <span class="sun-time">19:50</span>
+        <span class="sun-desc">Golden hour — the building holds its warmth longest in the upper loft terraces.</span>
+      </div>
+    </div>
+  </div>
+  <div class="sunlight-visual">
+    <div class="sun-art">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.5;">
+        <!-- Radiating sun rings -->
+        <circle cx="300" cy="300" r="60" fill="none" stroke="#D4AF7A" stroke-width="1.5" opacity="0.9"/>
+        <circle cx="300" cy="300" r="100" fill="none" stroke="#B8965A" stroke-width="1" opacity="0.7"/>
+        <circle cx="300" cy="300" r="150" fill="none" stroke="#8C7A62" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="300" cy="300" r="210" fill="none" stroke="#5A4A3A" stroke-width="0.6" opacity="0.35"/>
+        <circle cx="300" cy="300" r="280" fill="none" stroke="#3A2A1A" stroke-width="0.4" opacity="0.2"/>
+        <!-- Sun rays -->
+        <g stroke="#D4AF7A" stroke-width="1" opacity="0.6">
+          <line x1="300" y1="220" x2="300" y2="140"/><line x1="380" y1="244" x2="440" y2="184"/>
+          <line x1="380" y1="300" x2="460" y2="300"/><line x1="380" y1="380" x2="440" y2="440"/>
+          <line x1="300" y1="380" x2="300" y2="460"/><line x1="220" y1="380" x2="160" y2="440"/>
+          <line x1="140" y1="300" x2="220" y2="300"/><line x1="160" y1="160" x2="220" y2="244"/>
+        </g>
+        <!-- Inner fill -->
+        <circle cx="300" cy="300" r="40" fill="#D4AF7A" opacity="0.3"/>
+        <circle cx="300" cy="300" r="22" fill="#D4AF7A" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== MATERIALS ======================== -->
+<section id="materials">
+  <div class="materials-header">
+    <div class="section-label" style="color:#8C7A62; --gold:#8C7A62; margin-bottom:1rem;">Materials &amp; Mood</div>
+  </div>
+  <div>
+    <h2 class="materials-title reveal">
+      The palette of<br><em>considered luxury</em>
+    </h2>
+    <p class="materials-sub reveal right" style="color:#8C7A62; max-width:400px; line-height:1.8; font-size:0.85rem; margin-top:1.5rem;">
+      Every surface, fixture, and finish was selected for its sensory quality — the way it receives light, yields to touch, and endures with grace.
+    </p>
+  </div>
+  <div class="palette-swatches reveal">
+    <div class="swatch s1"><div class="swatch-label">Natural Travertine</div></div>
+    <div class="swatch s2"><div class="swatch-label">Walnut Oak Panels</div></div>
+    <div class="swatch s3"><div class="swatch-label">Honed Limestone</div></div>
+    <div class="swatch s4"><div class="swatch-label">Brushed Brass</div></div>
+    <div class="swatch s5"><div class="swatch-label">Deep Stone</div></div>
+  </div>
+  <div class="material-qualities">
+    <div class="quality-item reveal">
+      <span class="quality-num">I</span>
+      <span class="quality-name">Stone</span>
+      <p class="quality-desc">Mediterranean limestone and marble selected for veining character and tactile warmth.</p>
+    </div>
+    <div class="quality-item reveal reveal-delay-1">
+      <span class="quality-num">II</span>
+      <span class="quality-name">Wood</span>
+      <p class="quality-desc">Structural walnut panelling and oak flooring aged to receive the Cretan light with grace.</p>
+    </div>
+    <div class="quality-item reveal reveal-delay-2">
+      <span class="quality-num">III</span>
+      <span class="quality-name">Metal</span>
+      <p class="quality-desc">Brushed steel hardware — handles, rails, and frames — in warm graphite and matte bronze.</p>
+    </div>
+    <div class="quality-item reveal reveal-delay-3">
+      <span class="quality-num">IV</span>
+      <span class="quality-name">Textile</span>
+      <p class="quality-desc">Sheer linen drapery, woven wool, and raw cotton softening every interior threshold.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== GALLERY ======================== -->
+<section id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label reveal">Architecture in Vision</div>
+      <h2 class="gallery-title reveal reveal-delay-1">
+        <em>Human-designed</em><br>visuals
+      </h2>
+    </div>
+    <div class="gallery-nav-btns reveal right">
+      <button class="gnav-btn" onclick="shiftGallery(-1)">←</button>
+      <button class="gnav-btn" onclick="shiftGallery(1)">→</button>
+    </div>
+  </div>
+
+  <!-- Exterior panoramas described as cinematic color blocks -->
+  <div class="gallery-strip" id="galleryStrip">
+    <div class="gallery-item" style="flex-basis: 50%; min-width: 300px;">
+      <div class="gallery-item-inner" style="background: linear-gradient(135deg, #1A1510 0%, #3A2A18 30%, #5A4A30 60%, #8C7A50 100%);"></div>
+      <div class="gallery-item-label">Exterior · Day</div>
+    </div>
+    <div class="gallery-item" style="flex-basis: 50%; min-width: 300px;">
+      <div class="gallery-item-inner" style="background: linear-gradient(160deg, #050308 0%, #1A0E18 30%, #3A2028 55%, #7A5040 80%, #B87A40 100%);"></div>
+      <div class="gallery-item-label">Exterior · Dusk</div>
+    </div>
+  </div>
+
+  <div class="gallery-room-cards" style="margin-top: 3rem;">
+    <div class="room-card reveal">
+      <div class="room-card-bg" style="background: linear-gradient(160deg, #0A0807 0%, #2A2018 40%, #4A3828 70%, #6A5040 100%);"></div>
+      <div class="room-card-overlay">
+        <p class="room-name">Living Room</p>
+        <p class="room-tag">Open-Plan Volume</p>
+      </div>
+    </div>
+    <div class="room-card reveal reveal-delay-1">
+      <div class="room-card-bg" style="background: linear-gradient(200deg, #0F0A08 0%, #2A1E14 35%, #5A3A20 65%, #8A6030 100%);"></div>
+      <div class="room-card-overlay">
+        <p class="room-name">Kitchen</p>
+        <p class="room-tag">Culinary Suite</p>
+      </div>
+    </div>
+    <div class="room-card reveal reveal-delay-2">
+      <div class="room-card-bg" style="background: linear-gradient(170deg, #080608 0%, #1A1020 35%, #3A2838 60%, #6A5060 100%);"></div>
+      <div class="room-card-overlay">
+        <p class="room-name">Master Suite</p>
+        <p class="room-tag">Private Sanctuary</p>
+      </div>
+    </div>
+    <div class="room-card reveal reveal-delay-3">
+      <div class="room-card-bg" style="background: linear-gradient(145deg, #070808 0%, #151A18 30%, #2A3830 55%, #506050 80%, #90A880 100%);"></div>
+      <div class="room-card-overlay">
+        <p class="room-name">WC / Bath</p>
+        <p class="room-tag">Spa Sensibility</p>
+      </div>
+    </div>
+    <div class="room-card reveal reveal-delay-4">
+      <div class="room-card-bg" style="background: linear-gradient(135deg, #050608 0%, #0A1018 30%, #182038 50%, #304060 75%, #506890 100%);"></div>
+      <div class="room-card-overlay">
+        <p class="room-name">Loft Mezzanine</p>
+        <p class="room-tag">Floor B Typology</p>
+      </div>
+    </div>
+    <div class="room-card reveal reveal-delay-5">
+      <div class="room-card-bg" style="background: linear-gradient(155deg, #060508 0%, #14101A 30%, #302030 55%, #5A4848 75%, #A88878 100%);"></div>
+      <div class="room-card-overlay">
+        <p class="room-name">Rooftop Terrace</p>
+        <p class="room-tag">Private Pool · B-Floor</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== INVEST ======================== -->
+<section id="invest">
+  <div class="invest-inner">
+    <div class="invest-header">
+      <div class="section-label reveal" style="justify-content:center;">Investment Proposition</div>
+      <h2 class="invest-title reveal reveal-delay-1">
+        The case for<br><em>Althea</em>
+      </h2>
+    </div>
+    <div class="invest-grid">
+      <div class="invest-cell reveal">
+        <span class="invest-icon">◈</span>
+        <p class="invest-cell-title">Ascending Residential Market</p>
+        <p class="invest-cell-text">Heraklion's residential sector is registering sustained demand for high-aesthetic, energy-efficient homes — with Althea's neighbourhood among the city's most actively rising zones.</p>
+      </div>
+      <div class="invest-cell reveal reveal-delay-1">
+        <span class="invest-icon">◈</span>
+        <p class="invest-cell-title">Unmatched Typological Range</p>
+        <p class="invest-cell-text">From studio to 115 m² premier loft, the collection addresses every profile — owner-occupier, family, investor. Eleven residences; eleven distinct propositions.</p>
+      </div>
+      <div class="invest-cell reveal reveal-delay-2">
+        <span class="invest-icon">◈</span>
+        <p class="invest-cell-title">Loft Living — A Market Rarity</p>
+        <p class="invest-cell-text">The B-floor split-level lofts with private rooftop pools represent a typology virtually absent in Heraklion — commanding premium positioning and strong rental yields.</p>
+      </div>
+      <div class="invest-cell reveal reveal-delay-3">
+        <span class="invest-icon">◈</span>
+        <p class="invest-cell-title">Mediterranean Contemporary Luxury</p>
+        <p class="invest-cell-text">The moodboard, material selection, and architectural language place Althea squarely within international luxury benchmarks — rare at this scale in Crete.</p>
+      </div>
+    </div>
+    <div class="invest-bottom">
+      <p class="invest-tagline reveal">"Not merely a property — an address that heals, a space that elevates, a future that compounds."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CLOSING ======================== -->
+<section id="closing">
+  <div class="closing-bg-art">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="width:80vw;max-width:900px;opacity:0.04;">
+      <circle cx="400" cy="400" r="380" fill="none" stroke="#C8B89A" stroke-width="1"/>
+      <circle cx="400" cy="400" r="320" fill="none" stroke="#C8B89A" stroke-width="0.8"/>
+      <circle cx="400" cy="400" r="260" fill="none" stroke="#C8B89A" stroke-width="0.6"/>
+      <circle cx="400" cy="400" r="200" fill="none" stroke="#C8B89A" stroke-width="0.5"/>
+      <line x1="20" y1="400" x2="780" y2="400" stroke="#C8B89A" stroke-width="0.4"/>
+      <line x1="400" y1="20" x2="400" y2="780" stroke="#C8B89A" stroke-width="0.4"/>
+      <line x1="130" y1="130" x2="670" y2="670" stroke="#C8B89A" stroke-width="0.3"/>
+      <line x1="670" y1="130" x2="130" y2="670" stroke="#C8B89A" stroke-width="0.3"/>
+    </svg>
+  </div>
+  <div class="closing-content">
+    <span class="closing-eyebrow reveal">Begin Your Residence</span>
+    <h2 class="closing-title reveal reveal-delay-1">
+      Welcome to<br><em>Althea</em>
+    </h2>
+    <div class="closing-divider reveal reveal-delay-2"></div>
+    <p class="closing-sub reveal reveal-delay-3">
+      Eleven residences. One philosophy. A home that heals.
+    </p>
+    <div class="closing-cta-group reveal reveal-delay-4">
+      <a href="#residences" class="btn-primary">Select Your Residence</a>
+      <a href="#manifesto" class="btn-ghost">Discover the Vision</a>
+    </div>
+  </div>
+  <div class="closing-architects">
+    <div class="arch-item reveal">
+      <strong>D. Makri</strong>
+      Architect
+    </div>
+    <div class="arch-item reveal reveal-delay-1">
+      <strong>G. Orfanou</strong>
+      Architect
+    </div>
+    <div class="arch-item reveal reveal-delay-2">
+      <strong>Heraklion, Crete</strong>
+      2026
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Althea Residences</span>
+  <span class="footer-copy">35°19'23.98"N · 25°07'05.44"E · Heraklion, Crete</span>
+  <span class="footer-copy">D. Makri &amp; G. Orfanou · 2026</span>
+</footer>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cursor');
+const curR = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animCursor() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  curR.style.left = rx + 'px'; curR.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+
+// PROGRESS BAR
+const prog = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+});
+
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => revealObs.observe(el));
+
+// PARALLAX
+const parallaxEls = document.querySelectorAll('[data-parallax]');
+function onParallax() {
+  const sy = window.scrollY;
+  parallaxEls.forEach(el => {
+    const factor = parseFloat(el.dataset.parallax);
+    const rect = el.closest('section').getBoundingClientRect();
+    const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * factor;
+    el.style.transform = `translateY(${offset}px)`;
+  });
+}
+window.addEventListener('scroll', onParallax, { passive: true });
+
+// HERO ARCH
+setTimeout(() => {
+  document.getElementById('hero-arch-svg').classList.add('loaded');
+}, 300);
+
+// FLOOR TABS
+function switchFloor(floor, btn) {
+  document.querySelectorAll('.floor-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.floor-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + floor).classList.add('active');
+  btn.classList.add('active');
+  // Re-trigger reveal for newly visible cards
+  const newCards = document.querySelectorAll('#panel-' + floor + ' .reveal');
+  newCards.forEach(c => {
+    if (!c.classList.contains('visible')) {
+      setTimeout(() => c.classList.add('visible'), 50);
+    }
+  });
+}
+
+// GALLERY SHIFT
+let gallOff = 0;
+function shiftGallery(dir) {
+  gallOff = Math.max(-30, Math.min(0, gallOff + dir * 15));
+  const strip = document.getElementById('galleryStrip');
+  strip.style.transform = `translateX(${gallOff}%)`;
+  strip.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1)';
+}
+
+// SMOOTH SECTION SCROLLING
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+<!-- ========================
+FRAMER BUILD GUIDE
+=========================
+(Hidden reference — copy/paste into Framer notes)
+
+SECTION STRUCTURE & FRAMER INSTRUCTIONS:
+Each section below maps to a Framer Frame at 100vw.
+
+──────────────────────────────────────────
+SECTION 01 — HERO
+Frame: 100vw × 100vh, overflow hidden, bg #0D0B09
+Background: SVG arch lines layer, opacity 7%
+Parallax: hero-content Frame, Y scroll offset factor 0.15
+Animations:
+  - hero-pretitle: opacity 0→1, Y 20→0, delay 0.3s, ease outExpo
+  - hero-title: opacity 0→1, Y 40→0, delay 0.5s, ease outExpo
+  - hero-subtitle: opacity 0→1, Y 20→0, delay 0.9s
+  - tagline: opacity 0→1, delay 1.8s
+  - CTA row: opacity 0→1, delay 2.2s
+  - scroll hint: opacity 0→1, delay 2.8s, loop Y bounce
+
+SECTION 02 — MANIFESTO
+Frame: 100vw × auto min 100vh, bg #2A2520
+Scroll-triggered: left index number sticky
+Text reveals: IntersectionObserver trigger, Y 40→0
+
+SECTION 03 — LOCATION
+Frame: 100vw 2-column grid, bg #3D3530
+Left column: SVG map art, parallax Y 0.1
+Right column: fade-in content on scroll
+
+SECTION 04 — BUILDING
+Frame: 100vw × 100vh, bg #0F0D0A
+3-column card grid with hover bottom gold line animation
+Gradient bottom border: opacity 0→1 on hover
+
+SECTION 05 — RESIDENCES
+Frame: 100vw auto, bg #2A2520
+Tab switching: Variants A/B
+Card grid: CSS Grid auto-fill minmax(280px, 1fr)
+
+SECTION 06 — SUNLIGHT
+Frame: 100vw × 100vh, 2-column grid
+Right: radial sun SVG with CSS rotation animation
+Timeline: staggered scroll reveal
+
+SECTION 07 — MATERIALS
+Frame: 100vw auto, bg #F5F0E8 (LIGHT SECTION)
+Swatch hover: translateY slide up label
+
+SECTION 08 — GALLERY
+Frame: 100vw auto, bg #2A2520
+Horizontal scroll strip: overflow scroll, snap
+Room cards: 3-column grid, scale + filter on hover
+
+SECTION 09 — INVEST
+Frame: 100vw × 100vh, bg #0D0B09
+4-cell grid with gold border separator
+
+SECTION 10 — CLOSING
+Frame: 100vw × 100vh, bg #2A2520
+Background: SVG concentric circles, opacity 4%
+Title: large serif, italic
+
+──────────────────────────────────────────
+TYPOGRAPHY SYSTEM:
+  Display: Cormorant Garamond 300 / 300i
+  UI: Raleway 200, 300, 400
+  Scale:
+    Hero: clamp(5.5rem, 13vw, 12rem)
+    Section H2: clamp(2rem, 4vw, 4rem)
+    Body: 0.9–1rem, line-height 1.9
+    Labels: 0.58–0.65rem, letter-spacing 0.25–0.4em
+    Stats: Cormorant 2.8–3.5rem 300
+
+COLOR SYSTEM:
+  --stone:      #2A2520 (primary dark)
+  --stone-mid:  #3D3530
+  --dark:       #0D0B09 (deepest)
+  --cream:      #F5F0E8 (light section)
+  --sand:       #C8B89A
+  --sand-light: #E8DDD0
+  --sand-dark:  #8C7A62
+  --gold:       #B8965A
+  --gold-light: #D4AF7A
+  --white:      #FAFAF8
+
+SCROLL BEHAVIOR (per section):
+  Hero:         Parallax Y 0.15 on content
+  Location:     Parallax Y 0.10 on map SVG
+  Sunlight:     Sun SVG slow rotation (360° / 60s CSS)
+  Closing:      Scale 0.95→1 on scroll enter
+
+IMAGE DIRECTION (replace color blocks with renders):
+  Slide 1.jpeg  → Hero background (dusk exterior, full-bleed)
+  Slide 27.jpeg → Gallery strip item 1 (day exterior)
+  Slide 1.jpeg  → Gallery strip item 2 (dusk exterior)
+  Slides 28-36  → Room cards (living, kitchen, master, WC, loft, terrace)
+  Slide 7.jpeg  → Materials section background (moodboard as overlay)
+  Slide 8.jpeg  → Sunlight section visual panel
+
+PARALLAX LAYERS per section (Framer Motion):
+  scrollYProgress 0→1 mapped to:
+  - Hero bg:     y: [0, -80px]
+  - Hero title:  y: [0, -120px]  (faster = floating effect)
+  - Location map: y: [-40px, 40px]
+  - Gallery imgs: scale: [1, 1.08] (Ken Burns on scroll)
+  - Closing bg:  rotate: [0, 8deg], scale: [1, 1.1]
+
+END FRAMER NOTES
+========================== -->
+</body>
+</html>
